@@ -17,7 +17,10 @@ public class TransactionDtoConverter implements Converter<Transaction, Transacti
                 .amount(transaction.getAmount())
                 .typeId(transaction.getType().getId())
                 .lectureId(transaction.getLectureId()) // Include lectureId
+                .teacherId(transaction.getTeacherId())
                 .lastUpdated(transaction.getLastUpdated())
                 .build();
     }
+
+
 }

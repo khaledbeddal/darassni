@@ -8,9 +8,11 @@ import java.util.List;
 public interface ITransactionService {
 
     List<TransactionDTO> getTransactionsByWalletId(@NotNull long walletId) throws WalletException;
-    TransactionDTO createTransactionAndChangeBalance(/*String globalId, */int typeId, double amount, long walletId, Long lectureId) throws WalletException;
-    List<TransactionDTO> getDebitTransactionsByUserIdAndLectureId(long userId, long lectureId) throws WalletException;
+    TransactionDTO createTransactionAndChangeBalance(/*String globalId, */int typeId, double amount, long walletId, Long lectureId, Long teacherId) throws WalletException;
+    TransactionDTO getDebitTransactionByUserIdAndLectureId(long userId, long lectureId) throws WalletException;
 
     List<TransactionDTO> getTransactionsByUserId(long userId) throws WalletException;
+
+    List<TransactionDTO> getTransactionsByTeacherId(long teacherId) throws WalletException;
 
 }

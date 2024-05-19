@@ -37,6 +37,11 @@ public class Transaction {
     @Column(name = "lecture_id")
     private Long lectureId;
 
+
+    @Column(name = "teacher_id")
+    private Long teacherId;
+
+
     @NotNull
     @Column(name = "amount")
     private double amount;
@@ -56,12 +61,14 @@ public class Transaction {
 
     public Transaction(){ }
 
-    public Transaction( /*String globalId,*/ Type type, double amount, Wallet wallet, Long lectureId) {
+    public Transaction( /*String globalId,*/ Type type, double amount, Wallet wallet, Long lectureId, Long teacherId) {
         /*this.globalId = globalId;*/
         this.type = type;
         this.amount = amount;
         this.wallet = wallet;
         this.lectureId = lectureId;
+        this.teacherId = teacherId;
+
         this.lastUpdated = new Date();
     }
 }

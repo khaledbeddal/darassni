@@ -63,6 +63,8 @@ public class TransactionController {
         double amount = transaction.getAmount();
         long walletId = transaction.getWalletId();
         long lectureId = transaction.getLectureId(); // Get the lectureId
+        long teacherId = transaction.getTeacherId();
+
 
         if(typeId != 1 && typeId != 2) return new ResponseEntity<>(new ErrorResponse("TypeId should be debit or credit", 400),HttpStatus.BAD_REQUEST);
         if(amount < 0) return new ResponseEntity<>(new ErrorResponse("Balance should not be negative", 400),HttpStatus.BAD_REQUEST);
@@ -75,7 +77,9 @@ public class TransactionController {
                     typeId,
                     amount,
                     walletId,
-                    lectureId); // Pass lectureId
+                    lectureId,
+                    teacherId
+                    );
             logger.info("TransactionController created transaction= " + createdTransaction.getWalletId());
         }
         catch (WalletException exc){
@@ -87,20 +91,18 @@ public class TransactionController {
 
     @GetMapping("/wallets/{userId}/{lectureId}/transactions")
     @RateLimit(limit = 50, duration = 60, unit = TimeUnit.SECONDS)
-    @ApiOperation(value = "Find all debit transactions by given user and lectureId", notes = "Returns a collection of debit transactions by given user and lectureId")
+    @ApiOperation(value = "Find a debit transaction by given user and lectureId", notes = "Returns a debit transaction by given user and lectureId")
     public ResponseEntity<?> getByUserIdAndLectureId(@PathVariable("userId") long userId, @PathVariable("lectureId") long lectureId) throws RateLimiterException {
         logger.info("TransactionController getByUserIdAndLectureId method calls for getting debit transactions");
-        List<TransactionDTO> transactions = transactionService.getDebitTransactionsByUserIdAndLectureId(userId, lectureId);
-        if (!transactions.isEmpty() && transactions.size() > 0) {
-            return ResponseEntity.ok().body(
-                    transactions
-                            .stream()
-                            .collect(Collectors.toList())
-            );
+
+        TransactionDTO transaction = transactionService.getDebitTransactionByUserIdAndLectureId(userId, lectureId);
+        if (transaction != null) {
+            return ResponseEntity.ok().body(transaction);
         } else {
-            throw new WalletException(404, "Debit transactions not found for the specified user and lecture");
+            throw new WalletException(404, "Debit transaction not found for the specified user and lecture");
         }
     }
+
 
     @GetMapping("/users/{userId}/transactions")
     @RateLimit(limit = 50, duration = 60, unit = TimeUnit.SECONDS)
@@ -114,5 +116,20 @@ public class TransactionController {
             throw new WalletException(404, "Transactions not found for the specified user");
         }
     }
+
+    @GetMapping("/teachers/{teacherId}/transactions")
+    @RateLimit(limit = 50, duration = 60, unit = TimeUnit.SECONDS)
+    @ApiOperation(value = "Find all transactions by given teacher ID", notes = "Returns a collection of transactions by given teacher ID")
+    public ResponseEntity<?> getByTeacherId(@PathVariable("teacherId") long teacherId) throws RateLimiterException {
+        logger.info("TransactionController getByTeacherId method calls for getting transactions with teacherId");
+
+        List<TransactionDTO> transactions = transactionService.getTransactionsByTeacherId(teacherId);
+        if (!transactions.isEmpty()) {
+            return ResponseEntity.ok().body(transactions);
+        } else {
+            throw new WalletException(404, "Transactions not found for the specified teacher");
+        }
+    }
+
 
 }

@@ -54,7 +54,7 @@ public class TransactionService implements ITransactionService {
 
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE, rollbackFor = WalletException.class)
     @Override
-    public TransactionDTO createTransactionAndChangeBalance(/*@NotBlank String globalId,*/ @NotBlank int typeId, @NotNull double amount, @NotNull long walletId, Long lectureId) throws WalletException {
+    public TransactionDTO createTransactionAndChangeBalance(/*@NotBlank String globalId,*/ @NotBlank int typeId, @NotNull double amount, @NotNull long walletId, Long lectureId, Long teacherId) throws WalletException {
 
         try {
             if(typeId == 1){
@@ -67,8 +67,10 @@ public class TransactionService implements ITransactionService {
 
             if(addedWallet.isPresent()){
 
-                Transaction addTransaction = new Transaction(/*globalId,*/ typeRepository.getOne(typeId), amount, addedWallet.get(), lectureId);
+                Transaction addTransaction = new Transaction(/*globalId,*/ typeRepository.getOne(typeId), amount, addedWallet.get(), lectureId, teacherId);
                 addTransaction.setLectureId(lectureId); // Set the lectureId
+                addTransaction.setTeacherId(teacherId);
+
                 Transaction createdTransaction =  transactionRepository.save(addTransaction);
                 if(createdTransaction != null){
                     return transactionConverter.convert(createdTransaction);
@@ -87,12 +89,14 @@ public class TransactionService implements ITransactionService {
     }
 
     @Override
-    public List<TransactionDTO> getDebitTransactionsByUserIdAndLectureId(long userId, long lectureId) throws WalletException {
+    public TransactionDTO getDebitTransactionByUserIdAndLectureId(long userId, long lectureId) throws WalletException {
         try {
-            return transactionRepository.findByWalletUserIdAndLectureIdAndTypeId(userId, lectureId, 1)
-                    .stream()
-                    .map(transactionConverter::convert)
-                    .collect(Collectors.toList());
+            List<Transaction> debitTransactions = transactionRepository.findByWalletUserIdAndLectureIdAndTypeId(userId, lectureId, 1);
+            if (!debitTransactions.isEmpty()) {
+                return transactionConverter.convert(debitTransactions.get(0));
+            } else {
+                return null; // No debit transaction found
+            }
         } catch (Exception e) {
             throw new WalletException(400, "Error retrieving debit transactions by user ID and lecture ID");
         }
@@ -107,6 +111,18 @@ public class TransactionService implements ITransactionService {
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new WalletException(400, "Error retrieving transactions by user ID");
+        }
+    }
+
+    @Override
+    public List<TransactionDTO> getTransactionsByTeacherId(long teacherId) throws WalletException {
+        try {
+            return transactionRepository.findByTeacherId(teacherId)
+                    .stream()
+                    .map(transactionConverter::convert)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new WalletException(400, "Error retrieving transactions by teacher ID");
         }
     }
 
