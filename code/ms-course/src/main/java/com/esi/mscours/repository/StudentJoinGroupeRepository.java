@@ -12,4 +12,5 @@ public interface StudentJoinGroupeRepository extends JpaRepository<StudentJoinGr
     List<StudentJoinGroupe> findStudentJoinGroupesByIdStudent (Long idStudent);
     List<StudentJoinGroupe> findStudentJoinGroupesByIdGroupe (Long idGroupe);
     StudentJoinGroupe findStudentJoinGroupeByIdGroupeAndIdStudent(Long idGroupe,Long idStudent);
+
 }

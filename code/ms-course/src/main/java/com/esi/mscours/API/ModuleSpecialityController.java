@@ -5,6 +5,7 @@ import com.esi.mscours.DTO.ModuleResDTO;
 import com.esi.mscours.DTO.SpecialityDTO;
 import com.esi.mscours.entities.Module;
 import com.esi.mscours.entities.ModuleName;
+
 import com.esi.mscours.entities.Speciality;
 import com.esi.mscours.repository.ModuleRepository;
 import com.esi.mscours.repository.SpecialityRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("api/v1")
@@ -29,10 +31,6 @@ public class ModuleSpecialityController {
     public List<Module> getAllModules() {
         return moduleRepository.findAll();
     };
-
-
-
-
 
     @GetMapping("/specialities")
     public  List<Speciality> getAllSpecialities() {
@@ -60,5 +58,6 @@ public class ModuleSpecialityController {
                 )
         ).collect(Collectors.toList());
     }
+
 }
 

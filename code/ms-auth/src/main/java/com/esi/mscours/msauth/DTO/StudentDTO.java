@@ -7,10 +7,12 @@ import java.util.Date;
 public class StudentDTO {
     private  String email;
     private String password;
+
     private String firstName;
     private String lastName;
     private Date birthdate;
     private  String gender;
     private String status;
     private String speciality;
+
 }

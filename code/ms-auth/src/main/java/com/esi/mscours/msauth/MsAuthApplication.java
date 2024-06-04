@@ -2,6 +2,14 @@ package com.esi.mscours.msauth;
 
 import com.esi.mscours.msauth.dao.*;
 import com.esi.mscours.msauth.entities.*;
+import com.esi.mscours.msauth.dao.AuthDao;
+import com.esi.mscours.msauth.dao.RoleDao;
+import com.esi.mscours.msauth.dao.StudentDao;
+import com.esi.mscours.msauth.dao.TeacherDao;
+import com.esi.mscours.msauth.entities.Auth;
+import com.esi.mscours.msauth.entities.Role;
+import com.esi.mscours.msauth.entities.Student;
+import com.esi.mscours.msauth.entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -67,6 +75,7 @@ public class MsAuthApplication implements CommandLineRunner {
 
 
 
+
         Auth teacher= new Auth();
         teacher.setId(2L);
         teacher.setPassword(passwordEncoder.encode("12345678"));
@@ -103,6 +112,7 @@ public class MsAuthApplication implements CommandLineRunner {
         student.setStatus(true);
         student.setSpeciality("Science_3");
 
+
         Student student1 = new Student();
         student1.setId(2L);
         student1.setEmail("yahia.said@gmail.com");
@@ -112,6 +122,7 @@ public class MsAuthApplication implements CommandLineRunner {
         student1.setGender("Male");
         student1.setStatus(true);
         student1.setSpeciality("Science_3");
+
         studentDao.save(student);
         studentDao.save(student1);
 

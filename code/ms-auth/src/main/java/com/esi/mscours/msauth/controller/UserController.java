@@ -55,17 +55,9 @@ public class UserController {
     private TeacherDao teacherDao;
     @Autowired
     private AdminDao adminDao;
-  /*
 
-    @Autowired
-    private CitizenDao citizenDao;
-    @Autowired
-    AgentDao agentDao;
-
-    */
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;
-
 
     //Reset the password
 
@@ -81,11 +73,6 @@ public class UserController {
     }
 
 
-
-
-
-
-
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/student/{email}",method = RequestMethod.GET)
     public  ResponseEntity<?> getStudent (@PathVariable String email, @RequestHeader("Authorization") String authorizationHeader){
@@ -97,8 +84,6 @@ public class UserController {
 
     }
 
-
-
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/teacher/{email}",method = RequestMethod.GET)
     public  ResponseEntity<?> getTeacher (@PathVariable String email, @RequestHeader("Authorization") String authorizationHeader){
@@ -109,8 +94,6 @@ public class UserController {
 
 
     }
-
-
 
 
 
@@ -199,7 +182,6 @@ public class UserController {
         Auth user = new Auth();
         Student student = new Student();
 
-
         student.setEmail(studentDTO.getEmail());
 
         student.setFirstName(studentDTO.getFirstName());
@@ -212,7 +194,6 @@ public class UserController {
 
         user.setEmail(studentDTO.getEmail());
         user.setPassword(passwordEncoder.encode((studentDTO.getPassword())));
-
         List<Role> roles = new ArrayList<>();
         roles.add(roleDao.findByName("STUDENT"));
         user.setRoles(roles);
@@ -226,7 +207,6 @@ public class UserController {
     }
 
 
-
     // register-teacher
     @RequestMapping(value = "/register-teacher", method = RequestMethod.POST)
     public ResponseEntity<String> registerTeacher(@RequestBody TeacherDTO teacherDTO) {
@@ -236,7 +216,6 @@ public class UserController {
 
         Auth user = new Auth();
         Teacher teacher = new Teacher();
-
         teacher.setEmail(teacherDTO.getEmail());
         teacher.setFirstName(teacherDTO.getFirstName());
         teacher.setLastName(teacherDTO.getLastName());
@@ -278,209 +257,13 @@ public class UserController {
             Auth auth = userDao.findAuthByEmail(email);
             auth.setStatus(true);
             userDao.save(auth);
-            Teacher teacher=teacherDao.findTeacherByEmail(email);
+            Teacher teacher = teacherDao.findTeacherByEmail(email);
             teacher.setStatus(true);
             teacherDao.save(teacher);
             return new ResponseEntity<>("Teacher account activated successfully", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Teacher does not exist", HttpStatus.BAD_REQUEST);
         }
-    }
-
-
-
-
-
-    /*
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value="/update/{nin}", method = RequestMethod.PATCH)
-    public ResponseEntity<?> update(@RequestBody CitizenDto payload, @PathVariable String nin){
-        Citizen citizen=citizenDao.findCitizensByNin(nin);
-        System.out.println(citizen);
-        System.out.println("hiiiiiiiiiiiiiiiiiiii"+payload.getFullNameAr());
-        if (citizenDao.findCitizensByNin(nin)!=null){
-
-            if(payload.getFullNameAr() == null){
-                citizen.setFullNameAr(citizen.getFullNameAr());
-            }
-            else {
-                citizen.setFullNameAr(payload.getFullNameAr());
-            }
-            if(payload.getFullNameLat()== null){
-                citizen.setFullNameLat(citizen.getFullNameLat());
-            }
-            else {
-                citizen.setFullNameLat(payload.getFullNameLat());
-            }
-            if(payload.getFather()== null){
-                citizen.setFather(citizen.getFather());
-            }
-            else {
-                citizen.setFather(payload.getFather());
-            }
-            if(payload.getMother()== null){
-                citizen.setMother(citizen.getMother());
-            }
-            else {
-                citizen.setMother(payload.getMother());
-            }
-            if(payload.getPartner()== null){
-                citizen.setPartner(citizen.getPartner());
-            }
-            else {
-                citizen.setPartner(payload.getPartner());
-            }
-            if(payload.getBirthdate() == null){
-                citizen.setBirthdate(citizen.getBirthdate());
-            }
-            else {
-                citizen.setBirthdate(payload.getBirthdate());
-            }
-            if(payload.getCommune()== null){
-                citizen.setCommune(citizen.getCommune());
-            }
-            else {
-                citizen.setCommune(payload.getCommune());
-            }
-            if(payload.getDaira()== null){
-                citizen.setDaira(citizen.getDaira());
-            }
-            else {
-                citizen.setDaira(payload.getDaira());
-            }
-            if(payload.getWilaya()== null){
-                citizen.setWilaya(citizen.getWilaya());
-            }
-            else {
-                citizen.setWilaya(payload.getWilaya());
-            }
-            if(payload.getNationality()== null){
-                citizen.setNationality(citizen.getNationality());
-            }
-            else {
-                citizen.setNationality(payload.getNationality());
-            }
-            citizenDao.save(citizen);
-            return  new ResponseEntity<>("Les informations de citoyen est bien modifier!", HttpStatus.OK);}
-        return new ResponseEntity<>("Citoyen n'existe pas ", HttpStatus.BAD_REQUEST);
-    }
-
-    */
-
-/*
-    @PreAuthorize("hasRole('STUDENT')")
-    @RequestMapping(value="/update/{email}", method = RequestMethod.PATCH)
-    public ResponseEntity<?> update(@RequestBody StudentDto payload, @PathVariable String email){
-        Student student =studentDao.findStudentByEmail(email);
-        System.out.println(student);
-        System.out.println("hiiiiiiiiiiiiiiiiiiii"+payload.getEmail());
-        if (studentDao.findStudentByEmail(email)!=null){
-
-            if(payload.getFirstName() == null){
-                student.setFirstName(student.getFirstName());
-            }
-            else {
-                student.setLastName(payload.getLastName());
-            }
-            if(payload.getLastName() == null){
-                student.setLastName(student.getLastName());
-            }
-            else {
-                student.setGender(payload.getGender());
-            } if(payload.getGender() == null){
-                student.setGender(student.getGender());
-            }
-            else {
-                student.setBirthdate(payload.getBirthdate());
-            } if(payload.getBirthdate() == null){
-                student.setBirthdate(student.getBirthdate());
-            }
-            else {
-                student.setStatus(payload.getStatus());
-            } if(payload.getStatus() == null){
-                student.setStatus(student.getStatus());
-            }
-            else {
-                student.setStatus(payload.getStatus());
-            }
-            studentDao.save(student);
-            return  new ResponseEntity<>("Les informations  est bien modifier!", HttpStatus.OK);}
-        return new ResponseEntity<>("Student n'existe pas ", HttpStatus.BAD_REQUEST);
-    }
-
-
-
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value="/delete/{nin}", method = RequestMethod.DELETE)
-    public String delete(@PathVariable String nin){
-        if(citizenDao.findCitizensByNin(nin)!=null){
-            Auth auth=userDao.findByUsername(nin);
-            Agent agent =agentDao.findAgentByNin(nin);
-            if(agent != null){
-                agentDao.delete(agent);
-            }
-            Citizen citizen =citizenDao.findCitizensByNin(nin);
-            citizenDao.delete(citizen);
-            userDao.delete(auth);
-            return  citizen.getFullNameLat() +" est supprimer ";}
-        return "Citizen n'existe pas ";
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value="/deleteAgent/{nin}", method = RequestMethod.DELETE)
-    public String deleteAgent(@PathVariable String nin) {
-
-
-        Agent agent = agentDao.findAgentByNin(nin);
-        Auth auth =userDao.findAuthByUsername(nin);
-
-
-        if (agent != null) {
-
-
-            agentDao.delete(agent);
-            auth.getRoles().remove(new Role(2L, "AGENT"));
-            System.out.println(auth.getRoles());
-            return agent.getFullName()+" est supprimer";
-        }else {
-            return "Agent n'existe pas ";
-        }
-
 
     }
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value="/updateAgent/{nin}", method = RequestMethod.PATCH)
-    public String updateAgent(@RequestBody AgentDto payload, @PathVariable String nin){
-
-        Agent agent= agentDao.findAgentByNin(nin);
-        if (agent !=null) {
-            if(payload.getCommune() == null) {
-                agent.setCommune(agent.getCommune());
-            }else {
-                agent.setCommune(payload.getCommune());
-            }
-            if (payload.getWilaya() == null){
-                agent.setWilaya(agent.getWilaya());
-            }else {
-                agent.setWilaya(payload.getWilaya());
-            }
-
-            agent.setNin(agent.getNin());
-            agent.setFullName(agent.getFullName());
-            agent.setId(agent.getId());
-            agentDao.save(agent);
-            return "Agent est bien modifier";
-        }
-
-        return "Agent n'existe pas ";
-    }
-
-
-   */
-
-
-
-
 }

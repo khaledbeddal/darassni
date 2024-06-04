@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -17,4 +18,5 @@ public class LectureDTO {
     private Long idGroupe;
     private Long idTeacher;
     private List<String> docs;
+
 }

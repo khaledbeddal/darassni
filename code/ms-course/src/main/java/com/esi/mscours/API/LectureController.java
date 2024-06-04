@@ -3,6 +3,7 @@ package com.esi.mscours.API;
 
 import com.esi.mscours.DTO.LectureDTO;
 import com.esi.mscours.entities.Document;
+
 import com.esi.mscours.entities.Groupe;
 import com.esi.mscours.entities.Lecture;
 import com.esi.mscours.model.Debited;
@@ -22,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+
 @RestController
 @RequestMapping("api/v1")
 public class LectureController {
@@ -36,6 +38,7 @@ public class LectureController {
     private  PaymentProxy paymentProxy;
     @Autowired
     private DocumentRepository documentRepository;
+
 
     @GetMapping("/lectures")
     public List<Lecture> getAllLectures() {
@@ -62,9 +65,11 @@ public class LectureController {
             });
             lecture.setDocumentList(documents);
             return lectureRepository.save(lecture);
+
         }
         return null;
     }
+
 
 
 
@@ -104,5 +109,6 @@ public class LectureController {
             return lectures;
         }else return null;
     }
+
 
 }

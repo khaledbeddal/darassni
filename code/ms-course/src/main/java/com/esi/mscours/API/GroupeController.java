@@ -3,6 +3,7 @@ package com.esi.mscours.API;
 import com.esi.mscours.DTO.GroupeDTO;
 import com.esi.mscours.entities.Groupe;
 import com.esi.mscours.entities.Lecture;
+
 import com.esi.mscours.entities.Module;
 import com.esi.mscours.entities.StudentJoinGroupe;
 import com.esi.mscours.repository.GroupeRepository;
@@ -55,6 +56,7 @@ public class GroupeController {
         groupe.setLecturePrice(groupeDTO.getLecturePrice());
         groupe.setIdTeacher(groupeDTO.getIdUser());
         groupe.setImage(groupeDTO.getImage());
+
         return  groupeRepository.save(groupe); }
         else return null ;
     }
@@ -67,6 +69,7 @@ public class GroupeController {
 
         if(payload.get("idGroupe") != null && payload.get("idStudent") !=null && payload.get("name")!=null) {
 
+
             Long idGroupe = Long.valueOf(payload.get("idGroupe").toString());
             Long idStudent = Long.valueOf(payload.get("idStudent").toString());
 
@@ -78,6 +81,7 @@ public class GroupeController {
                     return null;
                 }else if (groupe.getMax() > students.size()) {
                     students.add(studentJoinGroupeRepository.save(new StudentJoinGroupe(null,idGroupe,idStudent,payload.get("name").toString())));
+
                     groupe.setStudents(students);
                     return  groupeRepository.save(groupe);
                 }
@@ -113,6 +117,7 @@ public class GroupeController {
     // Get Teacher Groupes
 
     @PreAuthorize("hasRole('ROLE_TEACHER')")
+
     @GetMapping("/teacher-groupes" )
     public  List<Groupe> getTeacherGroupes( @RequestParam Long idTeacher) {
 

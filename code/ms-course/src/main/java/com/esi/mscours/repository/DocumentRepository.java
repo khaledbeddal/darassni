@@ -11,4 +11,5 @@ import java.util.List;
 @RepositoryRestResource
 public interface DocumentRepository extends JpaRepository<Document,Long> {
     List<Document> findDocumentByIdTeacher(Long idTeacher);
+
 }

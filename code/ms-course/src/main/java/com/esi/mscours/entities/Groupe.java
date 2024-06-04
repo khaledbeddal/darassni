@@ -23,6 +23,7 @@ public class Groupe {
     private int lecturePrice;
     private int max ;
     private String image; // Field to store the image URL
+
     @OneToMany(mappedBy = "groupe", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Lecture> lectures;
