@@ -80,6 +80,7 @@ public class MsCoursApplication implements CommandLineRunner {
                     lectureRepository.save(lecture);
                 }
             }
-        }
+
     }
+}
 }

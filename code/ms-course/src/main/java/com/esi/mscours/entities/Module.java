@@ -20,6 +20,7 @@ public class Module {
     @Enumerated(EnumType.STRING)
     private ModuleName name;
 
+
     @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Groupe> groupes;

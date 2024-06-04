@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class Lecture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long idLecture;
 
     private Date date;
@@ -28,13 +30,10 @@ public class Lecture {
     @JoinColumn(name = "idGroupe")
     private Groupe groupe;
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "lecture_document",
-            joinColumns = @JoinColumn(name = "lecture_id"),
-            inverseJoinColumns = @JoinColumn(name = "document_id")
-    )
+
+
+
+
     private List<Document> documentList;
 
     @OneToOne
@@ -43,6 +42,7 @@ public class Lecture {
 
     @Transient
     private List<Transaction> payments;
+
 
     @Override
     public String toString() {
@@ -53,6 +53,7 @@ public class Lecture {
                 ", documentList=" + documentList.stream()
                 .map(Document::getIdDocument)
                 .collect(Collectors.toList()) +
+
                 ", conference=" + (conference != null ? conference.getIdConference() : "null") +
                 '}';
     }

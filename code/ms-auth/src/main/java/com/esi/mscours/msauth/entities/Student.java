@@ -29,4 +29,5 @@ public class Student {
     private boolean status;
     private String speciality;
 
+
 }

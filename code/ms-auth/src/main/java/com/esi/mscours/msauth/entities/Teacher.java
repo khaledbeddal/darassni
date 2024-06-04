@@ -30,5 +30,4 @@ public class Teacher {
     private String moduleName;
     private String cv; // Add this field for the CV link
 
-
 }
