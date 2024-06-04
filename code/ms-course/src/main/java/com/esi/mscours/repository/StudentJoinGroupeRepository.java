@@ -10,4 +10,6 @@ import java.util.List;
 public interface StudentJoinGroupeRepository extends JpaRepository<StudentJoinGroupe, Long> {
 
     List<StudentJoinGroupe> findStudentJoinGroupesByIdStudent (Long idStudent);
+    List<StudentJoinGroupe> findStudentJoinGroupesByIdGroupe (Long idGroupe);
+    StudentJoinGroupe findStudentJoinGroupeByIdGroupeAndIdStudent(Long idGroupe,Long idStudent);
 }

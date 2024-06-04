@@ -2,6 +2,7 @@ package com.esi.mscours.API;
 
 import com.esi.mscours.DTO.GroupeDTO;
 import com.esi.mscours.entities.Groupe;
+import com.esi.mscours.entities.Lecture;
 import com.esi.mscours.entities.Module;
 import com.esi.mscours.entities.StudentJoinGroupe;
 import com.esi.mscours.repository.GroupeRepository;
@@ -53,6 +54,7 @@ public class GroupeController {
         groupe.setName(groupeDTO.getName());
         groupe.setLecturePrice(groupeDTO.getLecturePrice());
         groupe.setIdTeacher(groupeDTO.getIdUser());
+        groupe.setImage(groupeDTO.getImage());
         return  groupeRepository.save(groupe); }
         else return null ;
     }
@@ -63,7 +65,7 @@ public class GroupeController {
     public Groupe affectGroupes(@RequestBody Map<String,Object> payload) {
 
 
-        if(payload.get("idGroupe") != null && payload.get("idStudent") !=null) {
+        if(payload.get("idGroupe") != null && payload.get("idStudent") !=null && payload.get("name")!=null) {
 
             Long idGroupe = Long.valueOf(payload.get("idGroupe").toString());
             Long idStudent = Long.valueOf(payload.get("idStudent").toString());
@@ -72,9 +74,10 @@ public class GroupeController {
 
                 Groupe groupe = groupeRepository.findById(idGroupe).get();
                 ArrayList <StudentJoinGroupe> students = new ArrayList<>(groupe.getStudents());
-                if (groupe.getMax() > students.size()) {
-
-                    students.add(studentJoinGroupeRepository.save(new StudentJoinGroupe(null,idGroupe,idStudent)));
+                if(studentJoinGroupeRepository.findStudentJoinGroupeByIdGroupeAndIdStudent(idGroupe,idStudent)!=null){
+                    return null;
+                }else if (groupe.getMax() > students.size()) {
+                    students.add(studentJoinGroupeRepository.save(new StudentJoinGroupe(null,idGroupe,idStudent,payload.get("name").toString())));
                     groupe.setStudents(students);
                     return  groupeRepository.save(groupe);
                 }
@@ -109,13 +112,22 @@ public class GroupeController {
 
     // Get Teacher Groupes
 
-    @PreAuthorize("hasRole('ROLE_TEACEHR')")
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
     @GetMapping("/teacher-groupes" )
     public  List<Groupe> getTeacherGroupes( @RequestParam Long idTeacher) {
 
         List<Groupe> groupes = groupeRepository.findGroupesByIdTeacher(idTeacher) ;
         return groupes;
 
+    }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    @GetMapping("/teacher-groupe/{id}" )
+    public  Groupe getTeacherGroupe( @PathVariable(value="id") Long idGroupe,@RequestParam(value = "idTeacher") String idTeacher) {
+        if(groupeRepository.findById(idGroupe).isPresent()
+                && groupeRepository.findById(idGroupe).get().getIdTeacher().equals(Long.valueOf(idTeacher))){
+            return groupeRepository.findById(idGroupe).get();
+        }else return null;
     }
 
 

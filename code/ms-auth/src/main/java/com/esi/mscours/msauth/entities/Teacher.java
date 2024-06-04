@@ -27,4 +27,8 @@ public class Teacher {
     private  String gender;
     private boolean status;
 
+    private String moduleName;
+    private String cv; // Add this field for the CV link
+
+
 }

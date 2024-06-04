@@ -17,6 +17,8 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDocument;
     private String link;
+    private String name;
+    private Long idTeacher;
 
     @ManyToMany(mappedBy = "documentList")
     @JsonIgnore

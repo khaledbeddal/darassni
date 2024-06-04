@@ -53,6 +53,8 @@ public class UserController {
     private StudentDao studentDao;
     @Autowired
     private TeacherDao teacherDao;
+    @Autowired
+    private AdminDao adminDao;
   /*
 
     @Autowired
@@ -64,48 +66,7 @@ public class UserController {
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;
 
-    /*
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/citizens/{nin}/{wilaya}/{commune}",method = RequestMethod.GET)
-    public  ResponseEntity<?> getCitizens (@PathVariable String nin,@PathVariable String wilaya ,@PathVariable String commune ,@RequestHeader("Authorization") String authorizationHeader ){
 
-        List<Citizen> citizens =citizenDao.findCitizensByWilayaAndCommune(wilaya,commune);
-        Citizen citizen= citizenDao.findCitizenByNin(nin);
-        List<Citizen> citizensWithoutAdmin = new ArrayList<>();
-        for (Citizen cit : citizens) {
-            if (!cit.getNin().equals(citizen.getNin())) {
-                try{
-                    UserContact user = numeroProxy.getUserDetails(cit.getNin(),authorizationHeader);
-                    if (user != null){
-                        cit.setNumero(user.getContact().getNumero());
-                    }
-                }catch (FeignException.NotFound ex) {
-                    // Handle the case where 'nin' doesn't exist in 'numeroProxy'
-                    // You can log the error, set a default value, or skip this citizen
-                    // ...
-                } catch (FeignException ex) {
-                    // Handle other Feign exceptions if needed
-                    // ...
-                }
-                citizensWithoutAdmin.add(cit);
-            }
-        }
-        return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION,authorizationHeader).body(citizensWithoutAdmin);
-    }
-
-
-    @RequestMapping(value = "/reset/{nin}" ,method = RequestMethod.PUT)
-    public  ResponseEntity<?> resetPassword(@PathVariable String nin,@RequestBody Reset reset){
-        Auth auth =  userDao.findByUsername(nin);
-        if(auth != null){
-            auth.setPassword(passwordEncoder.encode((reset.getPassword())));
-            userDao.save(auth);
-            return  new ResponseEntity<>("Le mot de passe est bien modifié",HttpStatus.OK);
-        }
-        return  new ResponseEntity<>("Utilisateur n'existe pas",HttpStatus.BAD_REQUEST);
-    }
-
-    */
     //Reset the password
 
     @RequestMapping(value = "/reset/{email}" ,method = RequestMethod.PUT)
@@ -122,66 +83,7 @@ public class UserController {
 
 
 
-    /*
 
-    @PreAuthorize("hasRole('AGENT')")
-    @RequestMapping(value = "/citizens/{wilaya}/{commune}",method = RequestMethod.GET)
-    public  ResponseEntity<?> getCitizensAgent (@PathVariable String nin,@PathVariable String wilaya ,@PathVariable String commune ,@RequestHeader("Authorization") String authorizationHeader ){
-
-
-        List<Citizen> citizens =citizenDao.findCitizensByWilayaAndCommune(wilaya,commune);
-        Citizen citizen= citizenDao.findCitizenByNin(nin);
-        List<Citizen> citizensWithoutAdmin = new ArrayList<>();
-        for (Citizen cit : citizens) {
-            if (!cit.getNin().equals(citizen.getNin())) {
-                citizensWithoutAdmin.add(cit);
-            }
-        }
-        return   ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION,authorizationHeader).body(citizensWithoutAdmin);
-    }
-
-    @GetMapping("getNumero/{nin}")
-    public UserContact getNumero(@PathVariable("nin") String nin ,@RequestHeader("Authorization") String authorizationHeader){
-        try {
-            // Make the Feign client request
-            UserContact user = numeroProxy.getUserDetails(nin,authorizationHeader);
-
-            // Check if the userContact is null
-            if (user == null) {
-                // Handle the null data case
-                // ...
-                return null;
-            } else {
-                // Process the userContact data
-                // ...
-
-                    return user;
-            }
-        } catch (FeignException.NotFound ex) {
-            // Handle the 404 error case
-            // ...
-            return null;
-        }catch (FeignException ex) {
-            // Handle other Feign exceptions
-            // ...
-            return null;
-        }
-
-    }
-
-
-
-    @PreAuthorize("hasRole('AGENT')")
-    @RequestMapping(value = "/citizen/{nin}",method = RequestMethod.GET)
-    public  ResponseEntity<?> getCitizen (@PathVariable String nin, @RequestHeader("Authorization") String authorizationHeader){
-
-        Citizen citizen =citizenDao.findCitizenByNin(nin);
-        return   ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION,authorizationHeader).body(citizen);
-
-
-
-    }
-    */
 
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -195,20 +97,7 @@ public class UserController {
 
     }
 
-    /*
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/agent/{nin}",method = RequestMethod.GET)
-    public  ResponseEntity<?> getAgent (@PathVariable String nin, @RequestHeader("Authorization") String authorizationHeader){
-
-        Agent agent =agentDao.findAgentByNin(nin);
-        return   ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION,authorizationHeader).body(agent);
-
-
-
-    }
-
-     */
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/teacher/{email}",method = RequestMethod.GET)
@@ -223,51 +112,6 @@ public class UserController {
 
 
 
-
-    /*
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/agents/{nin}/{wilaya}/{commune}",method = RequestMethod.GET)
-    public  ResponseEntity<?> getAgents (@PathVariable String nin,@PathVariable String wilaya ,@PathVariable String commune ,@RequestHeader("Authorization") String authorizationHeader ){
-
-
-        List<Agent> agents =agentDao.findAgentsByWilayaAndCommune(wilaya,commune);
-        Agent agent= agentDao.findAgentByNin(nin);
-        List<Agent> agentsWithoutAdmin = new ArrayList<>();
-        for (Agent ag : agents) {
-            if (!ag.getNin().equals(agent.getNin())) {
-                agentsWithoutAdmin.add(ag);
-            }
-        }
-
-        return   ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION,authorizationHeader).body(agentsWithoutAdmin);
-    }
-
-
-
-
-
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> generateToken(@RequestBody LoginUser loginUser) throws AuthenticationException {
-
-        final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginUser.getUsername(),
-                        loginUser.getPassword()
-                )
-        );
-        if(authentication.isAuthenticated()){
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            final String token = jwtTokenUtil.generateToken(authentication);
-            return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION,token).body(token);
-        }
-        else{
-            throw new RuntimeException("invalid access");
-        }
-
-    }
-
-
-    */
 
 
     /// KHASNNIII NSAGAD AUTHENTIFICATION TA3 TEACHER
@@ -302,95 +146,53 @@ public class UserController {
     }
 
 
-    /*
-
-    @GetMapping("/profile/{nin}")
-    public Citizen getProfile(@PathVariable("nin") String nin){
-        return citizenDao.findCitizensByNin(nin);
-
-    }
-
-    */
 
 
     @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/profile-student/{email}")
     public Student getProfileStudent(@PathVariable("email") String email){
-        return studentDao.findStudentByEmail(email);
+        Student result= studentDao.findStudentByEmail(email);
+        Student student=new Student();
+        student.setEmail(result.getEmail());
+        student.setId(result.getId());
+        student.setSpeciality(result.getSpeciality());
+        student.setFirstName(result.getFirstName());
+        student.setLastName(result.getLastName());
+        student.setBirthdate(result.getBirthdate());
+        return student;
 
     }
+
     @PreAuthorize("hasRole('TEACHER')")
     @GetMapping("/profile-teacher/{email}")
     public Teacher getProfileTeacher(@PathVariable("email") String email){
-        return teacherDao.findTeacherByEmail(email);
-
+        Teacher result= teacherDao.findTeacherByEmail(email);
+        Teacher teacher=new Teacher();
+        teacher.setEmail(result.getEmail());
+        teacher.setId(result.getId());
+        teacher.setModuleName(result.getModuleName());
+        teacher.setFirstName(result.getFirstName());
+        teacher.setLastName(result.getLastName());
+        teacher.setBirthdate(result.getBirthdate());
+        return teacher;
     }
-
-
-    /*
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/registerAgent" , method = RequestMethod.POST)
-    public  ResponseEntity<String> registerAgent(@RequestBody AgentDto agentDTO ){
-        if (!citizenDao.existsByNin(agentDTO.getNin())) {
-
-            return new ResponseEntity<>("Nin n'existe pas !", HttpStatus.BAD_REQUEST);
-        }
-        if (agentDao.existsByNin(agentDTO.getNin())) {
-            return new ResponseEntity<>("Nin n'est pas disponible!", HttpStatus.BAD_REQUEST);
-        }
-
-        Agent agent =new Agent(null,agentDTO.getNin(),citizenDao.findCitizenByNin(agentDTO.getNin()).getFullNameLat(),agentDTO.getCommune(),agentDTO.getWilaya());
-        Auth auth = userDao.findAuthByUsername(agentDTO.getNin());
-        auth.getRoles().add(new Role(2L,"AGENT"));
-        userDao.save(auth);
-        agentDao.save(agent);
-
-        return new ResponseEntity<>("Agent est bien enregistrer!", HttpStatus.OK);
-
+    @GetMapping("/profile-admin/{email}")
+    public Admin getProfileAdmin(@PathVariable("email") String email){
+        Admin result= adminDao.findAdminByEmail(email);
+        Admin admin=new Admin();
+        admin.setEmail(result.getEmail());
+        admin.setId(result.getId());
+        admin.setFirstName(result.getFirstName());
+        admin.setLastName(result.getLastName());
+        return admin;
     }
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<String> register(@RequestBody registerDTO registerDto) {
-        if (userDao.existsByUsername(registerDto.getUsername())) {
-            return new ResponseEntity<>("Le Nin n'est pas disponible!", HttpStatus.BAD_REQUEST);
-        }
 
-        Auth user = new Auth();
-        Citizen citizen = new Citizen();
-        citizen.setNin(registerDto.getUsername());
-        citizen.setFullNameLat(registerDto.getFullNameLat());
-        citizen.setFullNameAr(registerDto.getFullNameAr());
-        citizen.setFather(registerDto.getFather());
-        citizen.setMother(registerDto.getMother());
-        citizen.setPartner(registerDto.getPartner());
-        citizen.setGender(registerDto.getGender());
-        citizen.setStatus(registerDto.getStatus());
-        citizen.setBirthdate(registerDto.getBirthdate());
-        citizen.setCommune(registerDto.getCommune());
-        citizen.setDaira(registerDto.getDaira());
-        citizen.setWilaya(registerDto.getWilaya());
-        citizen.setCommuneNaissance(registerDto.getCommuneNaissance());
-        citizen.setDairaNaissance(registerDto.getDairaNaissance());
-        citizen.setWilayaNaissance(registerDto.getWilayaNaissance());
-        citizen.setNationality(registerDto.getNationality());
-        user.setUsername(registerDto.getUsername());
-        user.setPassword(passwordEncoder.encode((registerDto.getPassword())));
-
-        List<Role> roles = new ArrayList<>();
-        roles.add(roleDao.findByName("CITIZEN"));
-        user.setRoles(roles);
-        citizenDao.save(citizen);
-        userDao.save(user);
-
-
-        return new ResponseEntity<>("Citoyen est bien enregistrer!", HttpStatus.OK);
-    }
-    */
 
     @RequestMapping(value = "/register-student", method = RequestMethod.POST)
-    public ResponseEntity<String> register(@RequestBody RegisterDTO registerDto) {
-        if (userDao.existsByEmail(registerDto.getEmail())) {
+    public ResponseEntity<String> register(@RequestBody StudentDTO studentDTO) {
+        if (userDao.existsByEmail(studentDTO.getEmail())) {
             return new ResponseEntity<>("L'email n'est pas disponible!", HttpStatus.BAD_REQUEST);
         }
 
@@ -398,18 +200,18 @@ public class UserController {
         Student student = new Student();
 
 
-        student.setEmail(registerDto.getEmail());
+        student.setEmail(studentDTO.getEmail());
 
-        student.setFirstName(registerDto.getFirstName());
-        student.setLastName(registerDto.getLastName());
+        student.setFirstName(studentDTO.getFirstName());
+        student.setLastName(studentDTO.getLastName());
 
-        student.setGender(registerDto.getGender());
+        student.setGender(studentDTO.getGender());
         student.setStatus(true);
-        student.setBirthdate(registerDto.getBirthdate());
+        student.setBirthdate(studentDTO.getBirthdate());
+        student.setSpeciality(studentDTO.getSpeciality());
 
-
-        user.setEmail(registerDto.getEmail());
-        user.setPassword(passwordEncoder.encode((registerDto.getPassword())));
+        user.setEmail(studentDTO.getEmail());
+        user.setPassword(passwordEncoder.encode((studentDTO.getPassword())));
 
         List<Role> roles = new ArrayList<>();
         roles.add(roleDao.findByName("STUDENT"));
@@ -423,57 +225,66 @@ public class UserController {
 
     }
 
+
+
     // register-teacher
-    @RequestMapping(value = "/register-teacher" , method = RequestMethod.POST)
-    public  ResponseEntity<String> registerTeacher(@RequestBody RegisterDTO registerDTO ){
-        if (userDao.existsByEmail(registerDTO.getEmail())) {
+    @RequestMapping(value = "/register-teacher", method = RequestMethod.POST)
+    public ResponseEntity<String> registerTeacher(@RequestBody TeacherDTO teacherDTO) {
+        if (userDao.existsByEmail(teacherDTO.getEmail())) {
             return new ResponseEntity<>("L'email n'est pas disponible!", HttpStatus.BAD_REQUEST);
         }
 
         Auth user = new Auth();
         Teacher teacher = new Teacher();
 
-
-        teacher.setEmail(registerDTO.getEmail());
-
-        teacher.setFirstName(registerDTO.getFirstName());
-        teacher.setLastName(registerDTO.getLastName());
-
-        teacher.setGender(registerDTO.getGender());
+        teacher.setEmail(teacherDTO.getEmail());
+        teacher.setFirstName(teacherDTO.getFirstName());
+        teacher.setLastName(teacherDTO.getLastName());
+        teacher.setGender(teacherDTO.getGender());
         teacher.setStatus(false);
-        teacher.setBirthdate(registerDTO.getBirthdate());
+        teacher.setBirthdate(teacherDTO.getBirthdate());
+        teacher.setModuleName(teacherDTO.getModuleName());
 
+        teacher.setCv(teacherDTO.getCv()); // Set the CV link
 
-        user.setEmail(registerDTO.getEmail());
-        user.setPassword(passwordEncoder.encode((registerDTO.getPassword())));
+        user.setEmail(teacherDTO.getEmail());
+        user.setPassword(passwordEncoder.encode((teacherDTO.getPassword())));
 
         List<Role> roles = new ArrayList<>();
-        roles.add(roleDao.findByName("TEACEHR"));
+        roles.add(roleDao.findByName("TEACHER"));
         user.setRoles(roles);
         teacherDao.save(teacher);
         userDao.save(user);
 
-
         return new ResponseEntity<>("Teacher est bien enregistrer! mais n'est pas encore activé", HttpStatus.OK);
+    }
 
+
+    // get teachers
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/teachers")
+    public List<Teacher> getProfileTeacher(){
+
+        List<Teacher> teachers=teacherDao.findAll();
+        return  teachers;
     }
 
     // activate teacher acount
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value="/activate-teacher/{email}", method = RequestMethod.PATCH)
-     public  ResponseEntity<?> activateTeacher(@PathVariable String email) {
-
-
-        if(userDao.existsByEmail(email) == true ) {
+    public ResponseEntity<?> activateTeacher(@PathVariable String email) {
+        if (userDao.existsByEmail(email)) {
             Auth auth = userDao.findAuthByEmail(email);
             auth.setStatus(true);
             userDao.save(auth);
-            return new ResponseEntity<>("le compte est activer",HttpStatus.OK);
-
+            Teacher teacher=teacherDao.findTeacherByEmail(email);
+            teacher.setStatus(true);
+            teacherDao.save(teacher);
+            return new ResponseEntity<>("Teacher account activated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Teacher does not exist", HttpStatus.BAD_REQUEST);
         }
-        else return  new ResponseEntity<>("Teacher n'existe pas",HttpStatus.BAD_REQUEST) ;
-
     }
 
 

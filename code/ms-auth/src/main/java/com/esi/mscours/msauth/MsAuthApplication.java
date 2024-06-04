@@ -1,13 +1,7 @@
 package com.esi.mscours.msauth;
 
-import com.esi.mscours.msauth.dao.AuthDao;
-import com.esi.mscours.msauth.dao.RoleDao;
-import com.esi.mscours.msauth.dao.StudentDao;
-import com.esi.mscours.msauth.dao.TeacherDao;
-import com.esi.mscours.msauth.entities.Auth;
-import com.esi.mscours.msauth.entities.Role;
-import com.esi.mscours.msauth.entities.Student;
-import com.esi.mscours.msauth.entities.Teacher;
+import com.esi.mscours.msauth.dao.*;
+import com.esi.mscours.msauth.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +21,8 @@ public class MsAuthApplication implements CommandLineRunner {
     private RoleDao roleDao;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    AdminDao adminDao;
     @Autowired
     StudentDao studentDao;
     @Autowired
@@ -61,6 +57,13 @@ public class MsAuthApplication implements CommandLineRunner {
         admin.setStatus(true);
         admin.setRoles(roles);
         authDao.save(admin);
+        Admin admin1=new Admin();
+        admin1.setId(admin.getId());
+        admin1.setEmail(admin.getEmail());
+        admin1.setLastName("merzoug");
+        admin1.setFirstName("abdelhadi");
+        admin1.setStatus(true);
+        adminDao.save(admin1);
 
 
 
@@ -98,6 +101,7 @@ public class MsAuthApplication implements CommandLineRunner {
         student.setBirthdate(new Date());
         student.setGender("Male");
         student.setStatus(true);
+        student.setSpeciality("Science_3");
 
         Student student1 = new Student();
         student1.setId(2L);
@@ -107,6 +111,7 @@ public class MsAuthApplication implements CommandLineRunner {
         student1.setBirthdate(new Date());
         student1.setGender("Male");
         student1.setStatus(true);
+        student1.setSpeciality("Science_3");
         studentDao.save(student);
         studentDao.save(student1);
 
@@ -117,7 +122,9 @@ public class MsAuthApplication implements CommandLineRunner {
         teacherr.setLastName("mohamed");
         teacherr.setGender("Male");
         teacherr.setStatus(true);
+        teacherr.setModuleName("ARABIC");
         teacherr.setBirthdate(new Date());
+        teacherr.setCv("https://drive.google.com/file/d/1nCQuAxf2O_xdWMrlpuVem_tF8aTRVFra/view");
         teacherDao.save(teacherr);
 
 

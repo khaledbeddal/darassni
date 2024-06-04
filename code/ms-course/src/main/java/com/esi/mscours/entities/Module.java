@@ -17,7 +17,8 @@ public class Module {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idModule;
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private ModuleName name;
 
     @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
     @JsonIgnore

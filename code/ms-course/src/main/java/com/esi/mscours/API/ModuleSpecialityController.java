@@ -1,15 +1,19 @@
 package com.esi.mscours.API;
 
 import com.esi.mscours.DTO.ModuleDTO;
+import com.esi.mscours.DTO.ModuleResDTO;
 import com.esi.mscours.DTO.SpecialityDTO;
 import com.esi.mscours.entities.Module;
+import com.esi.mscours.entities.ModuleName;
 import com.esi.mscours.entities.Speciality;
 import com.esi.mscours.repository.ModuleRepository;
 import com.esi.mscours.repository.SpecialityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1")
@@ -26,16 +30,9 @@ public class ModuleSpecialityController {
         return moduleRepository.findAll();
     };
 
-    // Ajouter Module
 
-    @PostMapping("/modules")
-    public Module addModule(@RequestBody ModuleDTO moduleDTO) {
-        Speciality speciality =specialityRepository.findById(moduleDTO.getSpecialityId()).get();
-        Module module = new Module();
-        module.setSpeciality(speciality);
-        module.setName(moduleDTO.getName());
-    return  moduleRepository.save(module);
-    }
+
+
 
     @GetMapping("/specialities")
     public  List<Speciality> getAllSpecialities() {
@@ -52,5 +49,16 @@ public class ModuleSpecialityController {
         return  specialityRepository.save(speciality);
     }
 
+    @GetMapping("/modules-by-name")
+    public List<ModuleResDTO> getModulesByName(@RequestParam(value = "name") ModuleName name) {
+        List<Module> modules = moduleRepository.findModulesByName(name);
+        return modules.stream().map(module ->
+                new ModuleResDTO(
+                        module.getIdModule(),
+                        module.getName(),
+                        module.getSpeciality() != null ? module.getSpeciality().getName() : null // Assuming Speciality has a getName method
+                )
+        ).collect(Collectors.toList());
+    }
 }
 

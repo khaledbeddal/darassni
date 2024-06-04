@@ -23,6 +23,6 @@ public class StudentJoinGroupe {
 
 
     private Long idGroupe;
-
     private Long idStudent;
+    private String studentName;
 }

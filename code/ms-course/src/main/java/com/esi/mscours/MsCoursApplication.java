@@ -38,49 +38,48 @@ public class MsCoursApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Speciality speciality = new Speciality(null, SpecialityName.Moy_2,null);
-       speciality=  specialityRepository.save(speciality);
-
-        Module module = new Module(null,"Module 1",null,speciality);
-        module = moduleRepository.save(module);
-
-        Groupe groupe = new Groupe(null,"Group 1",50,30,null,module,1L,null,null);
-        groupe = groupeRepository.save(groupe);
-
-        Groupe groupe2 = new Groupe(null,"Group 2",50,30,null,module,1L,null,null);
-        groupe2 = groupeRepository.save(groupe2);
-
-        Groupe groupe3 = new Groupe(null,"Group 3",50,30,null,module,1L,null,null);
-        groupe3 = groupeRepository.save(groupe3);
-
-        Lecture lecture = new Lecture();
-        lecture.setTitle("Introduction to Spring Boot");
-        lecture.setDate(new Date());
-        lecture.setGroupe(groupe);
-      //  lecture = lectureRepository.save(lecture);
-
         Document document1 = new Document();
-        document1.setLink("link1");
+        document1.setLink("http://example.com/doc1");
+        document1.setName("doc 1");
+        document1.setIdTeacher(1L);
         document1 = documentRepository.save(document1);
 
         Document document2 = new Document();
-        document2.setLink("link2");
+        document2.setLink("http://example.com/doc2");
+        document2.setName("doc 2");
+        document2.setIdTeacher(1L);
         document2 = documentRepository.save(document2);
+        for (SpecialityName specialityName : SpecialityName.values()) {
+            Speciality speciality = new Speciality(null, specialityName, null);
+            speciality = specialityRepository.save(speciality);
+            for (ModuleName moduleName : ModuleName.values()) {
+                Module module = new Module(null, moduleName, null, speciality);
+                module = moduleRepository.save(module);
 
-        lecture.setDocumentList(Arrays.asList(document1, document2));
-        lectureRepository.save(lecture);
+                // Create groups for each module
+                for (int i = 1; i <= 3; i++) {
+                    Groupe groupe = new Groupe(null, "Group " + i, 50, 30,"https://placehold.co/600x400", null,module, 1L, null, null);
+                    groupe = groupeRepository.save(groupe);
 
-        Conference conference = new Conference();
-        conference.setLink("conferenceLink");
-        conference.setDuration("1 hour");
-        conference.setLecture(lecture);
-        conferenceRepository.save(conference);
+                    // Create lectures for each group
+                    Lecture lecture = new Lecture();
+                    lecture.setTitle("Lecture for " + groupe.getName());
+                    lecture.setDate(new Date());
+                    lecture.setGroupe(groupe);
 
-        lecture.setConference(conference);
-        lectureRepository.save(lecture);
+                    lecture.setDocumentList(Arrays.asList(document1, document2));
+                    lecture = lectureRepository.save(lecture);
 
+                    Conference conference = new Conference();
+                    conference.setLink("http://example.com/conference");
+                    conference.setDuration("1 hour");
+                    conference.setLecture(lecture);
+                    conference = conferenceRepository.save(conference);
 
-
-
+                    lecture.setConference(conference);
+                    lectureRepository.save(lecture);
+                }
+            }
+        }
     }
 }
