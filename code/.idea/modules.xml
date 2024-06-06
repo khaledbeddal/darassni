@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/E-learning.iml" filepath="$PROJECT_DIR$/E-learning.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ms-auth/ms-auth.iml" filepath="$PROJECT_DIR$/ms-auth/ms-auth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ms-course/ms-course.iml" filepath="$PROJECT_DIR$/ms-course/ms-course.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ms-payment/ms-payment.iml" filepath="$PROJECT_DIR$/ms-payment/ms-payment.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ms-registry/ms-registry.iml" filepath="$PROJECT_DIR$/ms-registry/ms-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/code.iml" filepath="$PROJECT_DIR$/.idea/code.iml" />
     </modules>
   </component>
 </project>

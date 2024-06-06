@@ -3,7 +3,7 @@ function displayHomePage(){
     // check if user is connected
     const connectedUser =  localStorage.getItem("connectedUser");
      if(!connectedUser){
-         window.location.href = "login.html";  // <=> window.location = "login.html";
+         window.location.href = "login.html";
          return;
     }
     loadAndDisplayUsers();
@@ -45,7 +45,7 @@ window.addEventListener("load", displayHomePage);
 
 
 function handleLogout(){
-    fetch('http://localhost:8080/api/v1/users/logout', {
+    fetch('http://localhost:8087/api/v1/users/logout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ function handleLogout(){
         })
         .then(response => {
             localStorage.removeItem("connectedUser");
-            window.location.href = "login.html"; // <=> window.location = "login.html";
+            window.location.href = "login.html";
         })
 }
 

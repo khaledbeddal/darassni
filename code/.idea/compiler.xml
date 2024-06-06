@@ -7,39 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ms-payment" />
         <module name="ms-auth" />
+        <module name="ms-payment" />
+        <module name="video_call_app" />
         <module name="ms-registry" />
         <module name="gateway" />
         <module name="ms-course" />
       </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar" />
-        </processorPath>
-        <module name="gateway.main" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="api-gateway" target="17" />
-      <module name="auth-service" target="17" />
-      <module name="demo" target="1.5" />
-      <module name="gateway.main" target="17" />
-      <module name="gateway.test" target="17" />
-      <module name="ms-gateway" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="api-gateway" options="-parameters" />
-      <module name="auth-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="ms-auth" options="-parameters" />
       <module name="ms-course" options="-parameters" />
-      <module name="ms-gateway" options="-parameters" />
       <module name="ms-payment" options="-parameters" />
       <module name="ms-registry" options="-parameters" />
+      <module name="video_call_app" options="-parameters" />
     </option>
   </component>
 </project>
