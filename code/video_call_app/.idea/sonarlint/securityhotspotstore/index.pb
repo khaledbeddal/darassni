@@ -11,3 +11,9 @@ i
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 x
 Hsrc/main/java/com/darassni/video_call_app/repository/UserRepository.java,3\a\3aa0552febe990fee74c33c64a97e9f3bb524fd8
+X
+(src/main/resources/static/videocall.html,c\d\cd844c49fe61e524d831cfe96ac645b7fe1ad57a
+R
+"src/main/resources/application.yml,a\6\a6d8b8556fee0e03112ce2bf34b8cb27a7dc9e58
+U
+%src/main/resources/static/js/index.js,8\5\85e58167bc6304217627fa27447aa8780b8127b6

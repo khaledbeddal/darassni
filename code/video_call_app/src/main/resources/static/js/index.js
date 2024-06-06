@@ -3,7 +3,7 @@ function displayHomePage(){
     // check if user is connected
     const connectedUser =  localStorage.getItem("connectedUser");
      if(!connectedUser){
-         window.location.href = "login.html";  // <=> window.location = "login.html";
+         window.location.href = "login.html";
          return;
     }
     loadAndDisplayUsers();
@@ -57,7 +57,7 @@ function handleLogout(){
         })
         .then(response => {
             localStorage.removeItem("connectedUser");
-            window.location.href = "login.html"; // <=> window.location = "login.html";
+            window.location.href = "login.html";
         })
 }
 
