@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 public class Lecture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
 
     private Long idLecture;
 
@@ -42,6 +44,7 @@ public class Lecture {
     private List<Transaction> payments;
 
 
+
     @Override
     public String toString() {
         return "Lecture{" +
@@ -51,6 +54,7 @@ public class Lecture {
                 ", documentList=" + documentList.stream()
                 .map(Document::getIdDocument)
                 .collect(Collectors.toList()) +
+
 
                 ", conference=" + (conference != null ? conference.getIdConference() : "null") +
                 '}';

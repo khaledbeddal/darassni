@@ -56,6 +56,7 @@ public class UserController {
     @Autowired
     private AdminDao adminDao;
 
+
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;
 

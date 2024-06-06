@@ -25,6 +25,9 @@ public class GatwayConfig {
                 .route("ms-cours", r -> r.path("/cours/**")
                 .filters(f -> f.rewritePath("/cours/(?<s>.*)","/${s}").filter(filter))
                 .uri("lb://ms-cours/"))
+                .route("video_call_app", r -> r.path("/conf/**")
+                        .filters(f -> f.rewritePath("/conf/(?<s>.*)","/${s}").filter(filter))
+                        .uri("http://localhost:8087/"))
 
                 .build();
     }
