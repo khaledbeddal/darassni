@@ -6,18 +6,23 @@ import com.esi.mscours.entities.Lecture;
 
 import com.esi.mscours.entities.Module;
 import com.esi.mscours.entities.StudentJoinGroupe;
+import com.esi.mscours.model.User;
+import com.esi.mscours.proxy.UserProxy;
 import com.esi.mscours.repository.GroupeRepository;
 import com.esi.mscours.repository.ModuleRepository;
 import com.esi.mscours.repository.StudentJoinGroupeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -29,6 +34,9 @@ public class GroupeController {
     private ModuleRepository moduleRepository ;
     @Autowired
     private StudentJoinGroupeRepository studentJoinGroupeRepository;
+    @Autowired
+    private UserProxy userProxy;
+
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/groupes")
@@ -140,22 +148,29 @@ public class GroupeController {
 
     @PreAuthorize("hasRole('ROLE_TEACHER')")
     @PatchMapping("/groupes/{id}")
-    public Groupe updateGroupeByPatch(@PathVariable(value="id") Long idGroupe,
-                                  @RequestBody Map<String, Object> payload){
+    public ResponseEntity<Groupe> updateGroupeByPatch(
+            @PathVariable(value = "id") Long idGroupe,
+            @RequestBody Map<String, Object> payload) {
 
-        if( groupeRepository.findById(idGroupe).isPresent()){
-
-            Groupe groupe = groupeRepository.findById(idGroupe).get();
-
-            if(payload.get("name")!=null) groupe.setName(payload.get("name").toString());
-            if(payload.get("lecturePrice")!=null) groupe.setLecturePrice(payload.get("lecturePrice").hashCode());
-            if (payload.get("idModule")!=null) {
-                Module module = moduleRepository.findById(Long.valueOf(payload.get("idModule").hashCode())).get();
-                groupe.setModule(module);
+        Optional<Groupe> optionalGroupe = groupeRepository.findById(idGroupe);
+        if (optionalGroupe.isPresent()) {
+            Groupe groupe = optionalGroupe.get();
+            Long idTeacher = Long.valueOf(payload.get("idTeacher").toString());
+            if (groupe.getIdTeacher().equals(idTeacher)) {
+                if (payload.containsKey("name")) {
+                    groupe.setName(payload.get("name").toString());
+                }
+                if (payload.containsKey("lecturePrice")) {
+                    groupe.setLecturePrice(Double.valueOf(payload.get("lecturePrice").toString()));
+                }
+                if (payload.containsKey("max")) {
+                    groupe.setMax(Integer.valueOf(payload.get("max").toString()));
+                }
+                return ResponseEntity.ok(groupeRepository.save(groupe));
             }
-            return groupeRepository.save(groupe);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
 
@@ -177,7 +192,36 @@ public class GroupeController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_STUDENT')")
+    @GetMapping("/search-groupes")
+    public ResponseEntity<List<Groupe>> searchGroupes(@RequestParam(required = false) String name,
+                                                      @RequestParam(required = false) String firstName,
+                                                      @RequestParam(required = false) String lastName,
+                                                      @RequestParam(required = false) String moduleName,@RequestHeader("Authorization") String authorizationHeader) {
+
+        List<Groupe> groupes = groupeRepository.findAll();
+
+        List<Groupe> filteredGroupes = groupes.stream()
+                .filter(groupe -> {
+                    User teacher = userProxy.getTeacher(groupe.getIdTeacher(),"tocours",authorizationHeader);
+                    groupe.setTeacher(teacher);
+
+                    boolean matchesName = (name == null || groupe.getName().contains(name));
+                    boolean matchesFirstName = (firstName == null || (teacher != null && teacher.getFirstName().contains(firstName)));
+                    boolean matchesLastName = (lastName == null || (teacher != null && teacher.getLastName().contains(lastName)));
+                    boolean matchesModuleName = (moduleName == null || (groupe.getModule() != null && groupe.getModule().getName().toString().contains(moduleName)));
+
+                    return matchesName && matchesFirstName && matchesLastName && matchesModuleName;
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(filteredGroupes);
+    }
+
+
+
 }
+
 
 
 

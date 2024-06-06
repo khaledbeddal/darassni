@@ -15,14 +15,12 @@ import java.util.List;
 @NoArgsConstructor
 public class GroupeDTO {
 
-
     private String name;
-    private int lecturePrice;
+    private Double lecturePrice;
     private int max ;
     private Long idModule;
     private Module module;
     private Long idUser;
     private String image;
-
 
 }

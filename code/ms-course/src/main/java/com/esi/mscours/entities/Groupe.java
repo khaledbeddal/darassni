@@ -20,8 +20,11 @@ public class Groupe {
     private Long idGroupe;
 
     private String name;
-    private int lecturePrice;
+    private Double lecturePrice;
     private int max ;
+    private String lectureDay;
+    private int initialLecturesNumber;
+    private int minMustPayLecturesNumber;
     private String image; // Field to store the image URL
 
     @OneToMany(mappedBy = "groupe", fetch = FetchType.LAZY)

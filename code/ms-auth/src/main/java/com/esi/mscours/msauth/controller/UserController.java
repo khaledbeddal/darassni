@@ -264,6 +264,5 @@ public class UserController {
         } else {
             return new ResponseEntity<>("Teacher does not exist", HttpStatus.BAD_REQUEST);
         }
-
     }
 }

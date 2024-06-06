@@ -18,13 +18,13 @@ public class GatwayConfig {
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
 
-                .route("auth-service", r -> r.path("/auth/**")
+                .route("ms-auth", r -> r.path("/auth/**")
                         .filters(f -> f.rewritePath("/auth/(?<s>.*)","/${s}").filter(filter))
-                        .uri("http://localhost:8094/"))
+                        .uri("lb://ms-auth/"))
 
                 .route("ms-cours", r -> r.path("/cours/**")
                 .filters(f -> f.rewritePath("/cours/(?<s>.*)","/${s}").filter(filter))
-                .uri("http://localhost:8081/"))
+                .uri("lb://ms-cours/"))
 
                 .build();
     }

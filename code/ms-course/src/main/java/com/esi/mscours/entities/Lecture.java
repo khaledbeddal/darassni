@@ -30,10 +30,8 @@ public class Lecture {
     @JoinColumn(name = "idGroupe")
     private Groupe groupe;
 
-
-
-
-
+    @ManyToMany
+    @JsonIgnore
     private List<Document> documentList;
 
     @OneToOne

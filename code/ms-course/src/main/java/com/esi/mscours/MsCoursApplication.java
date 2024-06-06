@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 
 @SpringBootApplication
 @EnableFeignClients
+@EnableEurekaClient
 
 public class MsCoursApplication implements CommandLineRunner {
     @Resource
@@ -58,7 +60,7 @@ public class MsCoursApplication implements CommandLineRunner {
 
                 // Create groups for each module
                 for (int i = 1; i <= 3; i++) {
-                    Groupe groupe = new Groupe(null, "Group " + i, 50, 30,"https://placehold.co/600x400", null,module, 1L, null, null);
+                    Groupe groupe = new Groupe((Long) null, "Group " + i, 50.0, 30,"Sunday",5,3,"https://placehold.co/600x400", null,module, 1L, null, null);
                     groupe = groupeRepository.save(groupe);
 
                     // Create lectures for each group

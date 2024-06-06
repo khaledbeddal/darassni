@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import javax.print.Doc;
 import java.util.List;
+import java.util.Optional;
 
 @RepositoryRestResource
 public interface DocumentRepository extends JpaRepository<Document,Long> {
     List<Document> findDocumentByIdTeacher(Long idTeacher);
+    Optional<Document> findByName(String fileName);
 
 }
