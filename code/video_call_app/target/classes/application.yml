@@ -3,13 +3,18 @@ spring:
     name: video_call_app
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/test_db
-    username: khaled
-    password: 123
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
 
   jpa:
     hibernate:
       ddl-auto: create-drop
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.H2Dialect

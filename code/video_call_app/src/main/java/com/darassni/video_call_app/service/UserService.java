@@ -17,6 +17,14 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+
+    private String address = "hello";
+    public String getAddress() {
+        return address;
+    }
+
+
+
     public void register(User user) {
         userRepository.save(user);
         log.info("User with id: {} saved successfully", user.getUserId());

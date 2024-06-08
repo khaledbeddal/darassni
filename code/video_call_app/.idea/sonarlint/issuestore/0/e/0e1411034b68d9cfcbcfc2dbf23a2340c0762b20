@@ -1,2 +1,16 @@
 
-r	java:S106"+Replace this use of System.out by a logger.(®Ü¦«ÿÿÿÿÿ8‘äõºù1J$bd03f0d5-9d12-49d4-ac85-c78b04618a3e
+®
+java:S4165 "fRemove this useless assignment; "username" already holds the assigned value along all execution paths.(ğ„ªıÿÿÿÿ8òÈî¿ÿ1J$9a26f8b0-7fd9-4090-b693-356c86b97e60
+ª
+java:S4165!"bRemove this useless assignment; "role" already holds the assigned value along all execution paths.(‚±×øÿÿÿÿ8òÈî¿ÿ1J$712c6397-5ca5-4037-9083-4aa8f52dbdca
+­
+java:S6833"eReplace the "@Controller" annotation by "@RestController" and remove all "@ResponseBody" annotations.(íœ¡ñùÿÿÿÿ8ôÈî¿ÿ1J$83bc76d3-66f4-4136-80f1-761cf9f4a2c9
+r	java:S106/"+Replace this use of System.out by a logger.(®Ü¦«ÿÿÿÿÿ8ùÈî¿ÿ1J$19e7ef03-bd99-49b2-accf-08eee2081129
+w
+java:S1656 "/Remove or correct this useless self-assignment.(ğ„ªıÿÿÿÿ8üÈî¿ÿ1J$9a4466d8-c543-40ea-a553-85d2adeb7cbe
+w
+java:S1656!"/Remove or correct this useless self-assignment.(‚±×øÿÿÿÿ8üÈî¿ÿ1J$a3666c3e-c477-455a-a76c-f1416b384da5
+s
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ôòñ¿ÿ1J$4b09c617-ff50-425e-a825-de4a60c475ff
+u
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8ôòñ¿ÿ1J$7ec97902-a41d-4765-bdb4-427a10509760

@@ -1,84 +1,61 @@
+async function fetchUserInfo() {
+  try {
+    // Show loading message or spinner
+    document.getElementById('loadingMessage').innerText = 'Loading...';
+
+    const response = await fetch('/api/v1/users/username');
+    const data = await response.json();
+    const username = data.username;
+    const role = data.role;
+    localStorage.setItem('connectedUser', username);
+    localStorage.setItem('roleUser', role);
+
+    // Hide loading message or spinner
+    document.getElementById('loadingMessage').innerText = '';
+  } catch (error) {
+    console.error('Error fetching user info:', error);
+    // Handle error, e.g., show an error message
+    document.getElementById('loadingMessage').innerText = 'Error fetching user info';
+  }
+
 
 function displayHomePage(){
-    // check if user is connected
-    const connectedUser =  localStorage.getItem("connectedUser");
-     if(!connectedUser){
-         window.location.href = "login.html";
-         return;
-    }
     loadAndDisplayUsers();
 }
 
 function loadAndDisplayUsers(){
     const userListElement = document.getElementById("userList");
     userListElement.innerHTML = "Loading...";
-    fetch('http://localhost:8080/api/v1/users')
-        .then(response => {
-            return response.json();
-        })
-        .then(response => {
-            console.log(response);
-            displayUsers(response, userListElement);
-        });
-}
-
-function displayUsers(userList, userListElement){
-    userListElement.innerHTML = "";
-    userList.forEach(user => {
-        if(user.status==="online"){
-            const listItem = document.createElement("li");
-            listItem.innerHTML = `
-                <div>
-                    <i class="fa fa-user-circle"></i>
-                    ${user.username} <i class="user-email">(${user.email})</i>
-                </div>
-                <i class="fa fa-lightbulb-o online"></i>
-            `;
-            userListElement.appendChild(listItem);
-        }
-    });
 
 }
 
 window.addEventListener("load", displayHomePage);
 
-
-
-function handleLogout(){
-    fetch('http://localhost:8080/api/v1/users/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: localStorage.getItem("connectedUser")
-    })
-        .then(response => {
-            return response;
-        })
-        .then(response => {
-            localStorage.removeItem("connectedUser");
-            window.location.href = "login.html";
-        })
-}
-
-const logoutBtn = document.getElementById("logoutBtn");
-logoutBtn.addEventListener("click", handleLogout);
-
-
-
 function handleNewMeeting(){
-    const connectedUser = JSON.parse(localStorage.getItem("connectedUser"));
-    window.open(`videocall.html?username=${connectedUser.username}`,"_blank");
+    const connectedUser = localStorage.getItem("connectedUser");
+    window.open(`videocall.html?username=${connectedUser}`,"_blank");
 }
 
 const newMeetingBtn = document.getElementById("newMeetingBtn");
+
+if (localStorage.getItem('roleUser') == "ROLE_STUDENT"){
+    newMeetingBtn.style.display = "none";
+}
+if (localStorage.getItem('roleUser') == "ROLE_TEACHER"){
+    document.getElementById("joinMeetingBtn").style.display = "none";
+    document.getElementById("meetingName").style.display = "none";
+}
+
+
+document.getElementById("username-text").innerHTML = `Welcome, ${localStorage.getItem("connectedUser")}`;
+
 newMeetingBtn.addEventListener("click", handleNewMeeting);
 
 function handleJoinMeeting(){
     const roomId = document.getElementById("meetingName").value;
-    const connectedUser = JSON.parse(localStorage.getItem("connectedUser"));
+    const connectedUser = localStorage.getItem("connectedUser");
 
-    const url = `videocall.html?roomID=${roomId}&username=${connectedUser.username}`;
+    const url = `videocall.html?roomID=${roomId}&username=${connectedUser}`;
     if (roomId === "") {
         alert("Please enter a room ID");
         return;
@@ -90,5 +67,10 @@ function handleJoinMeeting(){
 const joinMeetingBtn = document.getElementById("joinMeetingBtn");
 joinMeetingBtn.addEventListener("click", handleJoinMeeting);
 
+
+
+}
+
+fetchUserInfo();
 
 

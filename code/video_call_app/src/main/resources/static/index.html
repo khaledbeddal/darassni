@@ -12,21 +12,29 @@
 <body>
 
 <div class="container">
+
   <div class="main">
     <div class="new-meeting">
+      <h5 id="username-text"></h5>
       <button id="newMeetingBtn">Create a New Meeting</button>
       <div class="join-meeting">
         <input type="text" placeholder="Meeting ID" id="meetingName">
         <button id="joinMeetingBtn">Join</button>
       </div>
     </div>
-    <div class="connected-users">
-      <button id="logoutBtn">Logout</button>
-      <h2>Connected Users</h2>
-      <ul id="userList"></ul>
-    </div>
   </div>
+
+  <!-- Loading message element -->
+  <div id="loadingMessage" style="display: none;">Loading...</div>
 </div>
+
 <script src="/js/index.js"></script>
+<script>
+  document.getElementById('newMeetingBtn').addEventListener('click', function() {
+    // Show loading message when the button is clicked
+    document.getElementById('loadingMessage').style.display = 'block';
+    fetchUserInfo();
+  });
+</script>
 </body>
 </html>
