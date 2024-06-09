@@ -1,6 +1,7 @@
 package com.esi.mscours.API;
 
 import com.esi.mscours.DTO.GroupeDTO;
+import com.esi.mscours.DTO.LectureDTO;
 import com.esi.mscours.DTO.PayLecturesDto;
 import com.esi.mscours.entities.*;
 
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -60,23 +63,51 @@ public class GroupeController {
 
     @PreAuthorize("hasRole('ROLE_TEACHER')")
     @PostMapping("/add-group")
-    public Groupe addGroupe(@RequestBody GroupeDTO groupeDTO) {
-        Module module = moduleRepository.findById(groupeDTO.getIdModule()).get();
-        if( module != null ) {
-        Groupe groupe = new Groupe();
-        groupe.setModule(module);
-        groupe.setMax(groupeDTO.getMax());
-        groupe.setName(groupeDTO.getName());
-        groupe.setLecturePrice(groupeDTO.getLecturePrice());
-        groupe.setIdTeacher(groupeDTO.getIdUser());
-        groupe.setImage(groupeDTO.getImage());
-        groupe.setLectureDay(groupeDTO.getLectureDay());
-        groupe.setInitialLecturesNumber(groupeDTO.getInitialLecturesNumber());
-        groupe.setMinMustPayLecturesNumber(groupeDTO.getMinMustPayLecturesNumber());
-        groupe.setStatus(GroupeStatus.PENDING);
-        return  groupeRepository.save(groupe);
+    public ResponseEntity<?> addGroupe(@RequestBody GroupeDTO groupeDTO) {
+        Optional<Module> moduleOpt = moduleRepository.findById(groupeDTO.getIdModule());
+        if (moduleOpt.isPresent()) {
+            Module module = moduleOpt.get();
+            Groupe groupe = new Groupe();
+            groupe.setModule(module);
+            groupe.setMax(groupeDTO.getMax());
+            groupe.setName(groupeDTO.getName());
+            groupe.setLecturePrice(groupeDTO.getLecturePrice());
+            groupe.setIdTeacher(groupeDTO.getIdUser());
+            groupe.setImage(groupeDTO.getImage());
+            groupe.setLectureDay(groupeDTO.getLectureDay());
+            groupe.setInitialLecturesNumber(groupeDTO.getInitialLecturesNumber());
+            groupe.setMinMustPayLecturesNumber(groupeDTO.getMinMustPayLecturesNumber());
+            groupe.setStatus(GroupeStatus.PENDING);
+
+            // Saving the group first to generate an ID
+            groupe = groupeRepository.save(groupe);
+
+            // Check if lectures have been provided and their count matches the initialLecturesNumber
+            if (groupeDTO.getLectures() == null || groupeDTO.getLectures().size() != groupeDTO.getInitialLecturesNumber()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid number of lectures provided.");
+            }
+
+            // Creating lectures based on the provided data
+            List<Lecture> lectures = new ArrayList<>();
+            for (LectureDTO lectureDTO : groupeDTO.getLectures()) {
+                Lecture lecture = new Lecture();
+                lecture.setTitle(lectureDTO.getTitle());
+                // Parse the date and time
+                LocalDateTime dateTime = LocalDateTime.parse(lectureDTO.getDate(), DateTimeFormatter.ISO_DATE_TIME);
+                // Convert to Date
+                Date date = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+                lecture.setDate(date);
+                lecture.setGroupe(groupe);
+                lecture.setDocumentList(null); // Setting docs to null
+                lectures.add(lecture);
+            }
+            lectureRepository.saveAll(lectures);
+            groupe.setLectures(lectures);
+
+            return ResponseEntity.ok(groupeRepository.save(groupe));
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Module not found.");
         }
-        else return null ;
     }
 
 
@@ -317,8 +348,8 @@ public class GroupeController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PatchMapping("/change-groupe-status/{id}")
-    public ResponseEntity<?> activateGroupe(@PathVariable(value = "id") Long idGroupe,
-                                            @RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> changeStatus(@PathVariable(value = "id") Long idGroupe,
+                                          @RequestBody Map<String, Object> payload) {
         Optional<Groupe> groupeOpt = groupeRepository.findById(idGroupe);
 
         if (groupeOpt.isPresent()) {
@@ -326,24 +357,12 @@ public class GroupeController {
 
             if (payload.containsKey("status") && payload.get("status") != null) {
                 String status = payload.get("status").toString();
-                System.out.println(status);
                 if ("active".equalsIgnoreCase(status)) {
-                    int initLecturesNumber = groupe.getInitialLecturesNumber();
-                    DayOfWeek lectureDay = DayOfWeek.valueOf(groupe.getLectureDay().toUpperCase(Locale.ROOT));
-                    List<LocalDate> lectureDates = getNextLectureDates(lectureDay, initLecturesNumber);
-
-                    List<Lecture> lectures = new ArrayList<>();
-                    for (LocalDate date : lectureDates) {
-                        Lecture lecture = new Lecture();
-                        lecture.setDate(convertToDate(date));
-                        lecture.setGroupe(groupe);
-                        lectures.add(lecture);
-                    }
-
-                    lectureRepository.saveAll(lectures);
-                    groupe.setLectures(lectures);
                     groupe.setStatus(GroupeStatus.ACTIVE);
                 } else if ("inactive".equalsIgnoreCase(status)) {
+                    // Delete the lectures associated with the group
+                    lectureRepository.deleteAll(groupe.getLectures());
+                    groupe.setLectures(Collections.emptyList());
                     groupe.setStatus(GroupeStatus.INACTIVE);
                 } else {
                     return ResponseEntity.badRequest().body("Invalid status value");
@@ -358,6 +377,7 @@ public class GroupeController {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     private List<LocalDate> getNextLectureDates(DayOfWeek lectureDay, int numberOfLectures) {
         List<LocalDate> lectureDates = new ArrayList<>();

@@ -5,32 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98f43cac-cca9-44d9-9ec0-6e015d2b0114" name="Changes" comment="updates">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/config/GatwayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/config/GatwayConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/MsAuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/MsAuthApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/CoursProjection.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/CoursProjection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/Teacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/API/GroupeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/API/GroupeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/DTO/GroupeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/DTO/GroupeDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/MsCoursApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/MsCoursApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/entities/Groupe.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/entities/Groupe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/entities/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/entities/Module.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/proxy/PaymentProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/proxy/PaymentProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/repository/GroupeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/repository/GroupeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/src/main/java/com/esi/mscours/mspayment/MsPaymentApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-payment/src/test/java/com/esi/mscours/mspayment/MsPaymentApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,6 +171,7 @@
       <workItem from="1717707670980" duration="9875000" />
       <workItem from="1717784095742" duration="11808000" />
       <workItem from="1717844723366" duration="17844000" />
+      <workItem from="1717932699796" duration="2757000" />
     </task>
     <servers />
   </component>
