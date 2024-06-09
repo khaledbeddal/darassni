@@ -23,5 +23,8 @@ public class GroupeDTO {
     private Module module;
     private Long idUser;
     private String image;
+    private String lectureDay;
+    private int initialLecturesNumber;
+    private int minMustPayLecturesNumber;
 
 }

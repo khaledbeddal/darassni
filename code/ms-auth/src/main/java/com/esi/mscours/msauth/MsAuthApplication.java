@@ -15,6 +15,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableEurekaClient
+@EnableFeignClients
 public class MsAuthApplication implements CommandLineRunner {
 
     @Autowired
@@ -90,6 +92,7 @@ public class MsAuthApplication implements CommandLineRunner {
         user.setId(3L);
         user.setPassword(passwordEncoder.encode("12345678"));
         user.setEmail("yahia.akermi@gmail.com");
+
         user.setStatus(true);
         user.setRoles(roles2);
         authDao.save(user);
@@ -105,7 +108,7 @@ public class MsAuthApplication implements CommandLineRunner {
 
 
         Student student = new Student();
-        student.setId(1L);
+        student.setId(user.getId());
         student.setEmail("yahia.akermi@gmail.com");
         student.setFirstName("Akermi");
         student.setLastName("Yahia");
@@ -113,10 +116,11 @@ public class MsAuthApplication implements CommandLineRunner {
         student.setGender("Male");
         student.setStatus(true);
         student.setSpeciality("Science_3");
+        student.setIdWallet(1L);
 
 
         Student student1 = new Student();
-        student1.setId(2L);
+        student1.setId(user1.getId());
         student1.setEmail("yahia.said@gmail.com");
         student1.setFirstName("Said");
         student1.setLastName("Yahia");
@@ -124,12 +128,13 @@ public class MsAuthApplication implements CommandLineRunner {
         student1.setGender("Male");
         student1.setStatus(true);
         student1.setSpeciality("Science_3");
+        student1.setIdWallet(2L);
 
         studentDao.save(student);
         studentDao.save(student1);
 
         Teacher teacherr = new Teacher();
-        teacherr.setId(1L);
+        teacherr.setId(teacher.getId());
         teacherr.setEmail("fateh.benlhadj@gmail.com");
         teacherr.setFirstName("Benlhadj");
         teacherr.setLastName("mohamed");

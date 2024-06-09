@@ -14,9 +14,8 @@ import java.util.Date;
 public class Teacher {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
-
+    private  Long userId;
     @Column(unique=true)
     private String email ;
 
@@ -29,5 +28,6 @@ public class Teacher {
 
     private String moduleName;
     private String cv; // Add this field for the CV link
+    private Long idWallet;
 
 }

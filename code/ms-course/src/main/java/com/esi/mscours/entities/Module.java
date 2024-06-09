@@ -25,8 +25,7 @@ public class Module {
     @JsonIgnore
     private List<Groupe> groupes;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idSpeciality")
     private Speciality speciality;
 

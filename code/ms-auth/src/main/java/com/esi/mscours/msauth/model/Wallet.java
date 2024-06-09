@@ -1,16 +1,15 @@
-package com.esi.mscours.model;
+package com.esi.mscours.msauth.model;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class User {
-
+public class Wallet {
     private Long id;
-    private String firstName ;
-    private String lastName;
-    private String email;
+    private long userId;
+    private double balance;
 }

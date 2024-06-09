@@ -6,6 +6,8 @@ import com.esi.mscours.msauth.config.TokenProvider;
 import com.esi.mscours.msauth.dao.*;
 import com.esi.mscours.msauth.entities.*;
 
+import com.esi.mscours.msauth.model.Wallet;
+import com.esi.mscours.msauth.proxy.PaymentProxy;
 import com.esi.mscours.msauth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +58,8 @@ public class UserController {
     private TeacherDao teacherDao;
     @Autowired
     private AdminDao adminDao;
+    @Autowired
+    private PaymentProxy paymentProxy;
 
 
     @Resource(name = "userService")
@@ -135,8 +140,10 @@ public class UserController {
     @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/profile-student/{email}")
     public Student getProfileStudent(@PathVariable("email") String email){
+        Auth user=userDao.findByEmail(email);
         Student result= studentDao.findStudentByEmail(email);
         Student student=new Student();
+        student.setUserId(user.getId());
         student.setEmail(result.getEmail());
         student.setId(result.getId());
         student.setSpeciality(result.getSpeciality());
@@ -150,8 +157,10 @@ public class UserController {
     @PreAuthorize("hasRole('TEACHER')")
     @GetMapping("/profile-teacher/{email}")
     public Teacher getProfileTeacher(@PathVariable("email") String email){
+        Auth user=userDao.findByEmail(email);
         Teacher result= teacherDao.findTeacherByEmail(email);
         Teacher teacher=new Teacher();
+        teacher.setUserId(user.getId());
         teacher.setEmail(result.getEmail());
         teacher.setId(result.getId());
         teacher.setModuleName(result.getModuleName());
@@ -199,10 +208,14 @@ public class UserController {
         roles.add(roleDao.findByName("STUDENT"));
         user.setRoles(roles);
         user.setStatus(true);
+        student.setId(user.getId());
         studentDao.save(student);
-        userDao.save(user);
+        Auth user1=userDao.save(user);
+        ResponseEntity<?> wallet = paymentProxy.createWallet(user1.getId(), 0.0);
+        System.out.println(wallet.getBody());
+        if (wallet.getStatusCode().is2xxSuccessful()){
 
-
+        }
         return new ResponseEntity<>("Student est bien enregistrer!", HttpStatus.OK);
 
     }
@@ -233,9 +246,10 @@ public class UserController {
         List<Role> roles = new ArrayList<>();
         roles.add(roleDao.findByName("TEACHER"));
         user.setRoles(roles);
+        teacher.setId(user.getId());
         teacherDao.save(teacher);
-        userDao.save(user);
-
+        Auth user1=userDao.save(user);
+        ResponseEntity<?> wallet = paymentProxy.createWallet(user1.getId(), 0.0);
         return new ResponseEntity<>("Teacher est bien enregistrer! mais n'est pas encore activé", HttpStatus.OK);
     }
 
