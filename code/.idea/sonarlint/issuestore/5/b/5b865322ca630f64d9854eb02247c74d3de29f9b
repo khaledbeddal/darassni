@@ -1,0 +1,27 @@
+
+Š
+java:S1192C"IDefine a constant instead of duplicating this literal "12345678" 4 times.(´Ö»êşÿÿÿÿJ$c0dc9770-5551-48ec-94a5-c007acd803ad
+„
+java:S11924"HDefine a constant instead of duplicating this literal "STUDENT" 3 times.(ĞĞÍÖJ$a6baf330-1bbc-414f-9eb0-d7715ed69464
+‰
+java:S11923"HDefine a constant instead of duplicating this literal "TEACHER" 3 times.(õí­ÿÿÿÿÿJ$dfcfd235-6266-4c04-8d3e-fcd129f9b2d2
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$b5f175f6-a795-418d-8f42-b931439719eb
+~
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞJ$f0e92705-7d41-473f-af35-1419e42bbad1
+~
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞJ$646985dc-254e-49f0-bb3d-eb30d220420e
+~
+java:S6813$"BRemove this field injection and use constructor injection instead.(êæÄŞJ$cc08f80f-6cee-4265-afa3-52d41dd04c75
+~
+java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞJ$6bfd6787-16d4-4c61-b289-1fd0f3ef4e3f
+~
+java:S6813("BRemove this field injection and use constructor injection instead.(êæÄŞJ$6672044e-0ad5-4ade-89d6-f8a9f48c44ca
+w
+java:S6437C"6Revoke and change this password, as it is compromised.(´Ö»êşÿÿÿÿJ$b8a5f2ec-65fc-45fb-9034-4220fc976420
+w
+java:S6437U"6Revoke and change this password, as it is compromised.(¸ŞÂÿÿÿÿÿJ$c6988253-9704-4398-87f5-6b627d5a4c99
+w
+java:S6437]"6Revoke and change this password, as it is compromised.( ® ’úÿÿÿÿJ$d9194846-867d-47e3-9cb7-dc75756f1c04
+w
+java:S6437g"6Revoke and change this password, as it is compromised.(ºë—¬ıÿÿÿÿJ$6144f2f7-dafa-4729-97ee-202ab44a84e5

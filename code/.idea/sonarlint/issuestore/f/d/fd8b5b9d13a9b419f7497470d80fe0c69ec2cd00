@@ -1,0 +1,7 @@
+
+¶
+java:S6204j"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹J$ff38e290-8cac-4db5-bc20-0704c0563b76
+y
+java:S1128	"]Remove this unused import 'org.springframework.cloud.client.discovery.EnableDiscoveryClient'.(¬Ç­D8ïô¡îÿ1
+s
+java:S1128"QRemove this unused import 'org.springframework.context.annotation.ComponentScan'.(æëòÒûÿÿÿÿ8ïô¡îÿ1

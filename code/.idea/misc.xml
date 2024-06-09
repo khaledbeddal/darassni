@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/ms-payment/pom.xml" />
         <option value="$PROJECT_DIR$/ms-registry/pom.xml" />
         <option value="$PROJECT_DIR$/video_call_app/pom.xml" />
+        <option value="$PROJECT_DIR$/admin-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -17,9 +18,8 @@
         <option value="$PROJECT_DIR$/ms-payment/pom.xml" />
       </set>
     </option>
-    <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="21" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

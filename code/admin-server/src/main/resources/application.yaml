@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: admin-server
+server:
+  port: 8997
+
+management:
+  health:
+    show-details: always
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -5,15 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98f43cac-cca9-44d9-9ec0-6e015d2b0114" name="Changes" comment="updates">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/config/GatwayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/config/GatwayConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/API/GroupeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/API/GroupeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/DTO/GroupeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/DTO/GroupeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-registry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-registry/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-registry/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ms-registry/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_call_app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/video_call_app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_call_app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/video_call_app/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_call_app/target/classes/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/video_call_app/target/classes/static/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_call_app/target/classes/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/video_call_app/target/classes/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_call_app/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/video_call_app/target/classes/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_call_app/target/classes/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/video_call_app/target/classes/static/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -27,18 +55,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="KubernetesApiProvider">{
-  &quot;contexts&quot;: [
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "configuredContexts": [
     {
-      &quot;name&quot;: &quot;minikube&quot;,
-      &quot;originalNamespace&quot;: &quot;default&quot;
+      "name": "minikube",
+      "kubeConfigUrl": "file://C:/Users/Khaled/.kube/config",
+      "originalNamespace": "default"
     }
   ],
-  &quot;isMigrated&quot;: true
-}</component>
-  <component name="KubernetesSettings">
-    <option name="contextName" value="minikube" />
-  </component>
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -54,35 +80,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MsAuthApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MsCoursApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MsRegistryApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.VideoCallAppApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Client/Desktop/backup wallet/rest-web-service-master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AdminServerApplication.executor": "Run",
+    "Spring Boot.GatewayApplication.executor": "Run",
+    "Spring Boot.MsAuthApplication.executor": "Run",
+    "Spring Boot.MsCoursApplication.executor": "Run",
+    "Spring Boot.MsRegistryApplication.executor": "Run",
+    "Spring Boot.VideoCallAppApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Khaled/Documents/Personal/Programming/projects/spring.boot/darassni/code",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PC COM\Downloads\darassni\code\video_call_app\src\main\java\com\darassni\video_call_app" />
@@ -97,7 +125,14 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MsCoursApplication">
+  <component name="RunManager">
+    <configuration name="AdminServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="admin-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.khaled.adminserver.AdminServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.gateway.GatewayApplication" />
@@ -142,6 +177,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.AdminServerApplication" />
       <item itemvalue="Spring Boot.MsCoursApplication" />
       <item itemvalue="Spring Boot.VideoCallAppApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
@@ -153,8 +189,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
-        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-23eed401" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -172,6 +208,7 @@
       <workItem from="1717784095742" duration="11808000" />
       <workItem from="1717844723366" duration="17844000" />
       <workItem from="1717932699796" duration="2757000" />
+      <workItem from="1717946342626" duration="3389000" />
     </task>
     <servers />
   </component>

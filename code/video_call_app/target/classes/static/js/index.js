@@ -45,7 +45,7 @@ window.addEventListener("load", displayHomePage);
 
 
 function handleLogout(){
-    fetch('http://localhost:8087/api/v1/users/logout', {
+    fetch('http://localhost:8080/api/v1/users/logout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -1,0 +1,22 @@
+server:
+  port: 8094
+  servlet:
+    context-path: /ms-auth
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8997
+
+
+management:
+  health:
+    show-details: always
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,5 +1,7 @@
 server:
   port: 7778
+  servlet:
+    context-path: /proxy
 
 eureka:
   client:
@@ -10,6 +12,10 @@ eureka:
 spring:
   application:
     name: proxy
+  boot:
+    admin:
+      client:
+        url: http://localhost:8997
   cloud:
     gateway:
       globalcors:
@@ -29,3 +35,14 @@ spring:
         locator:
           enabled: true
 
+
+management:
+  health:
+    show-details: always
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
