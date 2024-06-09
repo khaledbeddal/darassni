@@ -17,14 +17,15 @@ public class Module {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idModule;
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private ModuleName name;
+
 
     @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Groupe> groupes;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idSpeciality")
     private Speciality speciality;
 

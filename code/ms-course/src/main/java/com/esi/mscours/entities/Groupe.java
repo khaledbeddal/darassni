@@ -1,8 +1,6 @@
 package com.esi.mscours.entities;
 
 import com.esi.mscours.model.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,14 +18,18 @@ public class Groupe {
     private Long idGroupe;
 
     private String name;
-    private int lecturePrice;
-    private int max ;
+    private Double lecturePrice;
+    private int max;
+    private String lectureDay;
+    private int initialLecturesNumber;
+    private int minMustPayLecturesNumber;
+    private GroupeStatus status;
+    private String image;
+
     @OneToMany(mappedBy = "groupe", fetch = FetchType.LAZY)
-    @JsonIgnore
     private List<Lecture> lectures;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idModule")
     private Module module;
 
@@ -35,10 +37,6 @@ public class Groupe {
     @Transient
     private User teacher;
 
-
     @OneToMany
     private List<StudentJoinGroupe> students;
-
-
-
 }

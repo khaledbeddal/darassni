@@ -18,13 +18,21 @@ public class GatwayConfig {
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
 
-                .route("auth-service", r -> r.path("/auth/**")
-                        .filters(f -> f.rewritePath("/auth/(?<s>.*)","/${s}").filter(filter))
-                        .uri("http://localhost:8094/"))
+                .route("ms-auth", r -> r.path("/auth/**")
+                        .filters(f -> f.rewritePath("/auth/(?<s>.*)", "/${s}").filter(filter))
+                        .uri("lb://ms-auth"))
+
+                .route("ms-payment", r -> r.path("/payment/**")
+                        .filters(f -> f.rewritePath("/payment/(?<s>.*)", "/${s}").filter(filter))
+                        .uri("lb://ms-payment"))
 
                 .route("ms-cours", r -> r.path("/cours/**")
-                .filters(f -> f.rewritePath("/cours/(?<s>.*)","/${s}").filter(filter))
-                .uri("http://localhost:8081/"))
+                        .filters(f -> f.rewritePath("/cours/(?<s>.*)", "/${s}").filter(filter))
+                        .uri("lb://ms-cours"))
+
+                .route("video_call_app", r -> r.path("/conf/**")
+                        .filters(f -> f.rewritePath("/conf/(?<s>.*)", "/${s}").filter(filter))
+                        .uri("http://localhost:8087"))
 
                 .build();
     }

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,4 +16,7 @@ public class LectureDTO {
     private String date;
     private String title;
     private Long idGroupe;
+    private Long idTeacher;
+    private List<String> docs;
+
 }

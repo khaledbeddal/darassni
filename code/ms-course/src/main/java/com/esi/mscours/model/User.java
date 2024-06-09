@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class User {
 
-    private Long idUser;
-private String name ;
-
+    private Long id;
+    private String firstName ;
+    private String lastName;
+    private String email;
 }

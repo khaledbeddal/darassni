@@ -15,8 +15,8 @@ import java.util.Date;
 
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
+    private Long userId;
 
     @Column(unique=true)
     private String email ;
@@ -27,5 +27,8 @@ public class Student {
     private Date birthdate;
     private  String gender;
     private boolean status;
+    private String speciality;
+    private Long idWallet;
+
 
 }

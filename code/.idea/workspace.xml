@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="98f43cac-cca9-44d9-9ec0-6e015d2b0114" name="Changes" comment="updates">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/config/GatwayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/config/GatwayConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/MsAuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/MsAuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/CoursProjection.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/CoursProjection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-auth/src/main/java/com/esi/mscours/msauth/entities/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/API/GroupeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/API/GroupeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/DTO/GroupeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/DTO/GroupeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/MsCoursApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/MsCoursApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/entities/Groupe.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/entities/Groupe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/entities/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/entities/Module.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/proxy/PaymentProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/proxy/PaymentProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/repository/GroupeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-course/src/main/java/com/esi/mscours/repository/GroupeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/src/main/java/com/esi/mscours/mspayment/MsPaymentApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-payment/src/test/java/com/esi/mscours/mspayment/MsPaymentApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;contexts&quot;: [
+    {
+      &quot;name&quot;: &quot;minikube&quot;,
+      &quot;originalNamespace&quot;: &quot;default&quot;
+    }
+  ],
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="KubernetesSettings">
+    <option name="contextName" value="minikube" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2hVQ9STjgsmXviNygjVt63rC5JR" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MsAuthApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MsCoursApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MsRegistryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.VideoCallAppApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Client/Desktop/backup wallet/rest-web-service-master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\PC COM\Downloads\darassni\code\video_call_app\src\main\java\com\darassni\video_call_app" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MsCoursApplication">
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsAuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ms-auth" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.esi.mscours.msauth.MsAuthApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsCoursApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ms-course" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.esi.mscours.MsCoursApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsPaymentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ms-payment" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.esi.mscours.mspayment.MsPaymentApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsRegistryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ms-registry" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.esi.mscours.msregistry.MsRegistryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VideoCallAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="video_call_app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.darassni.video_call_app.VideoCallAppApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.MsCoursApplication" />
+      <item itemvalue="Spring Boot.VideoCallAppApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.MsAuthApplication" />
+      <item itemvalue="Spring Boot.MsPaymentApplication" />
+      <item itemvalue="Spring Boot.MsRegistryApplication" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-23eed401" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98f43cac-cca9-44d9-9ec0-6e015d2b0114" name="Changes" comment="" />
+      <created>1717676616354</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1717676616354</updated>
+      <workItem from="1717676619232" duration="186000" />
+      <workItem from="1717680048289" duration="11802000" />
+      <workItem from="1717707670980" duration="9875000" />
+      <workItem from="1717784095742" duration="11808000" />
+      <workItem from="1717844723366" duration="17844000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/video_call_app/src/main/java/com/darassni/video_call_app/service/UserService.java</url>
+          <line>25</line>
+          <properties field="userRepository" class="com.darassni.video_call_app.service.UserService" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
