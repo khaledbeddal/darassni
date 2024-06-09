@@ -2,15 +2,11 @@ package com.darassni.video_call_app.service;
 
 import com.darassni.video_call_app.model.User;
 import com.darassni.video_call_app.repository.UserRepository;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,10 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
-
-
-
-
 
     private final UserRepository userRepository;
 
@@ -55,24 +47,6 @@ public class UserService {
 
     public List<User> findAll() {
         return userRepository.findAll();
-    }
-
-
-    public List<String> getEmailFromAuthorizationHeader(String authorizationHeader) {
-
-        String jwtToken = authorizationHeader.substring(7);
-
-        Jws<Claims> claims = Jwts.parser()
-                .setSigningKey("signingkey")
-                .parseClaimsJws(jwtToken);
-
-        List<String> claim = new ArrayList<>();
-        String email = claims.getBody().get("email", String.class);
-        String roles = claims.getBody().get("roles", String.class);
-        claim.add(email);
-        claim.add(roles);
-
-        return  claim;
     }
 
 }
